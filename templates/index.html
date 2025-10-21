@@ -58,6 +58,28 @@
     </div>
 
     <script>
+        // Event listener para pegar desde el portapapeles
+        document.addEventListener('paste', function (e) {
+            const clipboardItems = e.clipboardData.items;
+            const items = Array.from(clipboardItems).filter(item => item.type.includes('image'));
+            if (items.length === 0) {
+                return; // No hay imágenes en el portapapeles
+            }
+
+            const file = items[0].getAsFile();
+            const fileInput = document.getElementById('imageFile');
+            
+            // Creamos una lista de archivos para asignarla al input
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            fileInput.files = dataTransfer.files;
+
+            // Mostramos un mensaje y llamamos a la función de subida
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Imagen pegada. Subiendo...';
+            uploadImage();
+        });
+
         function uploadImage() {
             const fileInput = document.getElementById('imageFile');
             const resultDiv = document.getElementById('result');
