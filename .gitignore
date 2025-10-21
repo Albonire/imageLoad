@@ -1,0 +1,6 @@
+# Archivos de entorno - ¡No subir a Git!
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
