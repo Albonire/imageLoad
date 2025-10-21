@@ -3,9 +3,11 @@ import io
 import base64
 import requests
 import os
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template
 from PIL import Image
 
+load_dotenv() # Carga las variables del archivo .env
 app = Flask(__name__)
 
 MAX_SIZE_KB = 800
